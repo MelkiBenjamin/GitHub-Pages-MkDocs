@@ -1,3 +1,3 @@
-# github-page-mkdocs
+# GitHub-Pages-MkDocs
 
-Pour mettre mkdocs dans github page
+Pour mettre MkDocs dans GitHub Pages.
