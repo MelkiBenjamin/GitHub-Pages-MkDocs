@@ -1,38 +1,38 @@
-name: deploiement mkdocs github page 
+name: Deploiement MkDocs GitHub Pages 
 
 on: [workflow_dispatch]
 
 jobs:
-    build:
+    Build:
         runs-on: ubuntu-latest
         steps:
-        - name: checkout
+        - name: Checkout
           uses: actions/checkout@v4
           
-        - name: test
+        - name: Test
           run: date
 
-        - name: install python3
+        - name: Install Python3
           uses: actions/setup-python@v5
           with: 
             python-version: '3.11'
 
-        - name: install mkdocs
+        - name: Install MkDocs
           run: pip install -r requirements.txt
 
-        - name: build mkdocs
+        - name: Build MkDocs
           run: mkdocs build
 
-        - name: debug
+        - name: Debug
           run: ls
 
-        - name: artifact upload
+        - name: Artifact upload
           uses: actions/upload-artifact@v4
           with:
             name: site
             path: site
 
-    deploiement:
+    Deploiement:
         runs-on: ubuntu-latest
         permissions:
             pages: write     
@@ -44,7 +44,7 @@ jobs:
         - name: ls
           run: ls
 
-        - name: artifact download
+        - name: Artifact download
           uses: actions/download-artifact@v4.1.7
           with: 
             name: site
@@ -55,7 +55,7 @@ jobs:
               mkdir _site
               ls
   
-        - name: deplacer dans _site en html
+        - name: Deplacer dans _site en html
           run: |          
               mv $(ls --ignore=_site) _site/
               ls _site
@@ -66,12 +66,12 @@ jobs:
               echo "::warning title=Invalid file permissions automatically fixed::$line"
             done
     
-        - name: upload-pages-artifac
+        - name: Upload-pages-artifac
           uses: actions/upload-pages-artifact@v3 
               
         - name: Deploy to GitHub Pages
           id: deployment
           uses: actions/deploy-pages@v4
             
-        needs: build
+        needs: Build
     
