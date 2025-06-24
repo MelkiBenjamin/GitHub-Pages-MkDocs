@@ -1,2 +1,5 @@
 site_name: Mon site DevOps
 dev_addr: 0.0.0.0:80
+theme:
+  name: mkdocs
+  locale: fr
