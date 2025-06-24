@@ -6,6 +6,9 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
+        - name: checkout
+          uses: actions/checkout@v4
+          
         - name: test
           run: date
 
@@ -13,9 +16,6 @@ jobs:
           uses: actions/setup-python@v5
           with: 
             python-version: '3.11'
-
-        - name: checkout
-          uses: actions/checkout@v4
 
         - name: install mkdocs
           run: pip install -r requirements.txt
@@ -41,9 +41,6 @@ jobs:
                 name: github-pages
                 url: ${{ steps.deployment.outputs.page_url }}
         steps:
-        - name: test
-          run: date
-
         - name: ls
           run: ls
 
